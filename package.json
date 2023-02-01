@@ -1,0 +1,42 @@
+{
+  "name": "controlgastos",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@material-ui/core": "^4.12.4",
+    "@material-ui/icons": "^4.11.3",
+    "@mui/icons-material": "^5.10.15",
+    "@mui/material": "^5.11.1",
+    "@rsuite/icons": "^1.0.2",
+    "axios": "^1.2.0",
+    "firebase": "^9.15.0",
+    "mui-datatables": "^4.2.2",
+    "react": "^18.2.0",
+    "react-color": "^2.19.3",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.41.0",
+    "react-icons": "^4.7.1",
+    "react-router-dom": "^6.4.3",
+    "react-sweetalert2": "^0.5.2",
+    "react-transition-group": "^4.4.5",
+    "rsuite": "^5.22.2",
+    "styled-components": "^5.3.6",
+    "sweetalert": "^2.1.2",
+    "tss-react": "^4.4.4",
+    "web-vitals": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.24",
+    "@types/react-dom": "^18.0.8",
+    "@vitejs/plugin-react": "^2.2.0",
+    "vite": "^3.2.3"
+  }
+}
