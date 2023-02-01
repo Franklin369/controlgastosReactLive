@@ -105,7 +105,7 @@ const linksArray = [
   {
     label: "Categorias",
     icon: <MdOutlineAnalytics />,
-    to: "/categorias",
+    to: "/productos",
   },
   {
     label: "Productos",

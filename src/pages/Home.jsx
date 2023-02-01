@@ -23,7 +23,9 @@ export function Home() {
   return (
     <div>
       <Container>
-        <h1>Hola soy home</h1>
+        <h1>Home- bienvenido {user.displayName}</h1>
+        <h1>{user.email}</h1>
+        <img src={user.photoURL}></img>
         {user?.displayName ? (
           <button onClick={handleSignOut}>Logout</button>
         ) : (

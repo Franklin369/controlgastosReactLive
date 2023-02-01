@@ -8,7 +8,7 @@ import { Account } from "../pages/Account";
 import { Protected } from "../components/Protected";
 import { UserAuth } from "../context/AuthContext";
 import { Sidebar } from "../components/Sidebar";
-import {Categorias} from "../pages/Categorias"
+
 export function MyRoutes() {
   const { user } = UserAuth();
   const RequireAuth = ({ children }) => {
@@ -29,7 +29,7 @@ export function MyRoutes() {
       <Route path="/login" element={<Login />} />
 
       <Route exact path="/ingresos" element={<Ingresos />} />
-      <Route path="/categorias" element={<Categorias/>}/>
+     
       <Route
         exact
         path="/account"
