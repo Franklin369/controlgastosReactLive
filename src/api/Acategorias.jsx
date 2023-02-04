@@ -1,6 +1,7 @@
 import { db } from "./firebase.config";
 import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
 import swal from "sweetalert";
+import { async } from "@firebase/util";
 
 const conexion = collection(db, "categorias");
 export async function InsertarCategorias(p) {
@@ -19,12 +20,20 @@ export async function ValidardatosRepetidos(p) {
     );
     const queryConsulta = await getDocs(q);
     queryConsulta.forEach((doc) => {
-     
       info.push(doc.data());
-      
     });
     return info.length;
   } catch (e) {
     console.log(e);
   }
+}
+
+export async function Mostrartodo() {
+  const data = [];
+  const q = query(conexion);
+  const rpt = await getDocs(q);
+  rpt.forEach((doc) => {
+    data.push({ ...doc.data(), id: doc.id });
+  });
+  return data;
 }

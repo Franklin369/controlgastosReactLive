@@ -5,6 +5,7 @@ import { useState } from "react";
 import Emojipicker from "emoji-picker-react";
 import { BsFillEmojiHeartEyesFill } from "react-icons/bs";
 import swel from "sweetalert";
+import {Cargador} from "../Cargador";
 import {
   InsertarCategorias,
   ValidardatosRepetidos,
@@ -15,6 +16,7 @@ export function Registrarcategoria({ open, onClose }) {
   const [showPicker, setShowPicker] = useState(false);
   const [emojiSelect, setEmojiSelect] = useState("👄");
   const [valorRepetido, setValorRepetido] = useState(false);
+  const [estadoProceso,setEstadoProceso] = useState(false);
 
   const {
     register,
@@ -41,15 +43,18 @@ export function Registrarcategoria({ open, onClose }) {
       icono: emojiSelect,
     };
     try {
+      setEstadoProceso(true);
       const respuesta = await ValidardatosRepetidos(p);
       if (respuesta == 0) {
         await InsertarCategorias(p);
         onClose();
         swel("Datos guardados correctamente");
       } else {
+        setEstadoProceso(false);
         setValorRepetido(true);
       }
     } catch (e) {
+      setEstadoProceso(false);
       console.log(e);
     }
   };
@@ -60,6 +65,9 @@ export function Registrarcategoria({ open, onClose }) {
           <p>Ya tienes una categoría con ese nombre.</p>
         </ContainerDatosRepetidos>
       )}
+      {
+        estadoProceso &&<Cargador/>
+      }
       <section className="sub-container">
         <div className="header">
           <h1>Registrar nueva categoria</h1>
