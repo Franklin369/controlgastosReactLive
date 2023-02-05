@@ -1,5 +1,5 @@
 import { db } from "./firebase.config";
-import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
+import { collection, addDoc, getDocs, query, where, updateDoc } from "firebase/firestore";
 import swal from "sweetalert";
 import { async } from "@firebase/util";
 
@@ -36,4 +36,7 @@ export async function Mostrartodo() {
     data.push({ ...doc.data(), id: doc.id });
   });
   return data;
+}
+export async function EditarCategorias(p){
+    await updateDoc(doc(db,"categorias"),p)
 }

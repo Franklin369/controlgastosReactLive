@@ -5,18 +5,20 @@ import { useState } from "react";
 import Emojipicker from "emoji-picker-react";
 import { BsFillEmojiHeartEyesFill } from "react-icons/bs";
 import swel from "sweetalert";
-import {Cargador} from "../Cargador";
+import { Cargador } from "../Cargador";
 import {
   InsertarCategorias,
   ValidardatosRepetidos,
 } from "../../api/Acategorias";
-export function Registrarcategoria({ open, onClose }) {
+import { ConvertirCapitalize } from "../../utils/Conversiones";
+import { useEffect } from "react";
+export function Registrarcategoria({ open, onClose, dataSelect }) {
   if (!open) return;
 
   const [showPicker, setShowPicker] = useState(false);
   const [emojiSelect, setEmojiSelect] = useState("👄");
   const [valorRepetido, setValorRepetido] = useState(false);
-  const [estadoProceso,setEstadoProceso] = useState(false);
+  const [estadoProceso, setEstadoProceso] = useState(false);
 
   const {
     register,
@@ -38,7 +40,7 @@ export function Registrarcategoria({ open, onClose }) {
   };
   const insertar = async (data) => {
     const p = {
-      descripcion: data.descripcion,
+      descripcion: ConvertirCapitalize(data.descripcion),
       color: currentColor,
       icono: emojiSelect,
     };
@@ -58,6 +60,10 @@ export function Registrarcategoria({ open, onClose }) {
       console.log(e);
     }
   };
+  useEffect(() => {
+    setEmojiSelect(dataSelect.icono);
+    setColor(dataSelect.color);
+  }, []);
   return (
     <Container>
       {valorRepetido && (
@@ -65,9 +71,7 @@ export function Registrarcategoria({ open, onClose }) {
           <p>Ya tienes una categoría con ese nombre.</p>
         </ContainerDatosRepetidos>
       )}
-      {
-        estadoProceso &&<Cargador/>
-      }
+      {estadoProceso && <Cargador />}
       <section className="sub-container">
         <div className="header">
           <h1>Registrar nueva categoria</h1>
@@ -76,6 +80,8 @@ export function Registrarcategoria({ open, onClose }) {
         <form className="formulario" onSubmit={handleSubmit(insertar)}>
           <div>
             <input
+              defaultValue={dataSelect.descripcion}
+              style={{ textTransform: "capitalize" }}
               placeholder="Nombre"
               type="text"
               {...register("descripcion", { required: true })}
