@@ -9,7 +9,7 @@ export function Datosuser({user}) {
       
     
 
-      <h1>{user.displayName}</h1>
+      
 
     </Container>
   );

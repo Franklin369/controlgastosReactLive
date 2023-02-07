@@ -1,5 +1,14 @@
 import { db } from "./firebase.config";
-import { collection, addDoc, getDocs, query, where, updateDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  where,
+  updateDoc,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 import swal from "sweetalert";
 import { async } from "@firebase/util";
 
@@ -37,6 +46,9 @@ export async function Mostrartodo() {
   });
   return data;
 }
-export async function EditarCategorias(p){
-    await updateDoc(doc(db,"categorias"),p)
+export async function EditarCategorias(p) {
+  await updateDoc(doc(db, "categorias"), p);
+}
+export async function EliminarCategorias(id) {
+  await deleteDoc(doc(db, "categorias", id));
 }

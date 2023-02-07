@@ -12,7 +12,7 @@ import {
 } from "../../api/Acategorias";
 import { ConvertirCapitalize } from "../../utils/Conversiones";
 import { useEffect } from "react";
-export function Registrarcategoria({ open, onClose, dataSelect }) {
+export function Registrarcategorias({ open, onClose, dataSelect,estadoMostrar }) {
   if (!open) return;
 
   const [showPicker, setShowPicker] = useState(false);
@@ -49,6 +49,7 @@ export function Registrarcategoria({ open, onClose, dataSelect }) {
       const respuesta = await ValidardatosRepetidos(p);
       if (respuesta == 0) {
         await InsertarCategorias(p);
+        estadoMostrar();
         onClose();
         swel("Datos guardados correctamente");
       } else {
